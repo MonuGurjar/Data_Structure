@@ -1,33 +1,20 @@
-#include <stdio.h>
-
- 
-
-void towers(int, char, char, char);
-
- 
+#include<stdio.h>
+void tower(int n, char from, char to, char help);
 int main()
 {
-    int num;
-    printf("Enter the number of disks : ");
-    scanf("%d", &num);
-    printf("The sequence of moves involved in the Tower of Hanoi are :\n");
-    towers(num, 'A', 'C', 'B');
+    int n;
+    printf("Enter the number of disk: ");
+    scanf("%d",&n);
+    tower(n, 'A', 'B', 'C');
     return 0;
 }
-
-void towers(int num, char frompeg, char topeg, char auxpeg)
-
-{
-    // Base Condition if no of disks are
-    if (num == 1)
-    {
-        printf("\n Move disk 1 from peg %c to peg %c", frompeg, topeg);
-        return;
+void tower(int n, char from, char to, char help){
+    if(n==1){
+        printf("%c to %c \n",from, to);
     }
-
-    // Recursively calling function twice
-    towers(num - 1, frompeg, auxpeg, topeg);
-    printf("\n Move disk %d from peg %c to peg %c", num, frompeg, topeg);
-    towers(num - 1, auxpeg, topeg, frompeg);
-
+    else{
+        tower(n-1, from, help, to);
+        printf("%c to %c \n",from, to);
+        tower(n-1, help, to, from);
+    }
 }
